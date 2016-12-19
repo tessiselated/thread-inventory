@@ -9,6 +9,7 @@ require_relative "./models/user"
 
 
 set :database_file, "./config/database.yml"
+set :sessions, true
 
 
 get "/" do
@@ -24,11 +25,16 @@ post "/login" do
   begin
     @user = User.new(@params)
     if @user.save
-      redirect to("/index")
+      session[:user_id] = @user.id
+      redirect to("/inventory")
     end
   rescue
     "Generic error message"
 
   end
 
+end
+
+get "/inventory" do
+  @inventory = Inventory.where(user_id: session[:user_id])
 end
