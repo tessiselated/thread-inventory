@@ -1,0 +1,28 @@
+<table class = "inventory-table">
+  <tr>
+    <th>
+      DMC
+    </th>
+    <th>
+      Amount
+    </th>
+  </tr>
+  <% @inventory.each do |entry| %>
+  <tr>
+    <th>
+      <%= entry.dmc %>
+    </th>
+    <th>
+      <%= entry.amount %>
+    </th>
+  </tr>
+  <% end %>
+
+</table>
+
+<h3>Add a thread</h3>
+<form action = "/inventory" method = "post">
+  <input name = "dmc" placeholder = "DMC thread" />
+  <input name = "amount" placeholder = "Enter amount"  />
+  <button type = "submit">Add thread</button>
+</form>
