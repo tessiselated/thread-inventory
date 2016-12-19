@@ -19,3 +19,16 @@ end
 get "/login" do
   erb :loginpage
 end
+
+post "/login" do
+  begin
+    @user = User.new(@params)
+    if @user.save
+      redirect to("/index")
+    end
+  rescue
+    "Generic error message"
+
+  end
+
+end
