@@ -15,14 +15,18 @@ set :sessions, true
 
 get "/" do
   #check if active session, otherwise
-  redirect to("/login")
+  redirect to("/signup")
+end
+
+get "/signup" do
+  erb :loginpage
 end
 
 get "/login" do
   erb :loginpage
 end
 
-post "/login" do
+post "/signup" do
   begin
     @user = User.new(@params)
     if @user.save
@@ -36,7 +40,20 @@ post "/login" do
 
 end
 
+post "/login" do
+  users = User.all
+  user = users.find_by username: (@params[:username])
+  if user != nil
+    if user[:password] == @params[:password]
+      binding.pry
+      session[:user_id] = user[:id]
+      redirect to("/inventory")
+    end
+  end
+end
+
 get "/inventory" do
+  binding.pry
   @inventory = Inventory.where(user_id: session[:user_id])
   erb :inventory
 end

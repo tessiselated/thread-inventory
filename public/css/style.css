@@ -20,6 +20,6 @@ div.entry-container {
   border-radius: 10px;
 }
 
-div.sign-up-container {
+div.sign-up-container, div.login-container {
   margin: 25px;
 }
