@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220014455) do
+ActiveRecord::Schema.define(version: 20161220042402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 20161220014455) do
   create_table "inventories", force: :cascade do |t|
     t.string  "dmc"
     t.string  "amount"
-    t.boolean "required"
-    t.boolean "in_use"
     t.integer "user_id"
     t.index ["user_id"], name: "index_inventories_on_user_id", using: :btree
   end
