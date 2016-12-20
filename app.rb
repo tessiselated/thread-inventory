@@ -71,3 +71,8 @@ post "/inventory" do
   @thread.save
   redirect to("/inventory")
 end
+
+delete "/session" do
+  session[:user_id] = nil
+  redirect to "/"
+end

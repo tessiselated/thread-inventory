@@ -24,7 +24,15 @@ nav {
 
 .nav > li > a {
   background-color: #A6B1E1;
-  padding-top: 30px;
+  margin-top: 15px;
+}
+
+.logout {
+  background-color: #A6B1E1;
+  padding: 15px;
+  margin-top: 15px;
+  border-style: none;
+  color: black;
 }
 
 a {

@@ -21,6 +21,12 @@
           <li class="active"><a href="./inventory">Inventory</a></li>
           <li><a href="./projects">Projects</a></li>
           <li><a href="./shoppinglist">Shopping List</a></li>
+          <li>
+            <form action="/session" method="post">
+              <input type="hidden" name="_method" value="delete" />
+              <input type="submit" value="Logout" class="logout"/>
+            </form>
+          </li>
         </ul>
         <% end %>
       </div>
