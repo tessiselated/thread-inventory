@@ -41,19 +41,14 @@ post "/signup" do
 end
 
 post "/login" do
-  users = User.all
-  user = users.find_by username: (@params[:username])
-  if user != nil
-    if user[:password] == @params[:password]
-      binding.pry
-      session[:user_id] = user[:id]
-      redirect to("/inventory")
-    end
+  user = User.find_by(username: params[:username])
+  if user && user.authenticate(params[:password])
+    session[:user_id] = user.id
+    redirect to("/inventory")
   end
 end
 
 get "/inventory" do
-  binding.pry
   @inventory = Inventory.where(user_id: session[:user_id])
   erb :inventory
 end
