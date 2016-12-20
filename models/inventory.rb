@@ -2,16 +2,16 @@ class Inventory < ActiveRecord::Base
   belongs_to :user
   has_many :spools
 
-  def add_spool(spool)
-    spools << spool
-    self.save
-  end
-
-   def loonth(spool_type)
-     found_spools = spools.find(dmc: spool_type)
-     lengths = found_spools.map(&:remaining)
-     lengths.sum
-   end
+  # def add_spool(spool)
+  #   spools << spool
+  #   self.save
+  # end
+  #
+  #  def length(spool_type)
+  #    found_spools = spools.find(dmc: spool_type)
+  #    lengths = found_spools.map(&:remaining)
+  #    lengths.sum
+  #  end
 
 end
 
