@@ -12,6 +12,16 @@ require_relative "./models/inventory"
 set :database_file, "./config/database.yml"
 set :sessions, true
 
+helpers do
+    def logged_in?
+        !!current_user
+    end
+
+    def current_user
+        User.find_by(id: session[:user_id])
+    end
+end
+
 
 get "/" do
   #check if active session, otherwise

@@ -6,12 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Thread Inventory</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Cabin|Pacifico" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans|Pacifico" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <div class = "container-fluid">
-    <h1 class = "site-heading">Thread Inventory</h1>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Thread Inventory</a>
+        </div>
+        <% if logged_in? %>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="./inventory">Inventory</a></li>
+          <li><a href="./projects">Projects</a></li>
+          <li><a href="./shoppinglist">Shopping List</a></li>
+        </ul>
+        <% end %>
+      </div>
+    </nav>
 
     <%= yield %>
 
