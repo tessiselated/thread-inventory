@@ -1,5 +1,6 @@
 body {
   font-family: 'Nunito Sans', sans-serif;
+  width: 100%;
 }
 
 div.navbar-header {
@@ -39,15 +40,116 @@ a {
   color: black;
 }
 
-div.entry-container {
-  margin: auto;
-  margin-top: 50px;
-  width: 50%;
+
+.panel {
+  border-radius: 5px;
   border-style: solid;
   border-color: #A30B37;
-  border-radius: 10px;
+}
+label {
+  font-weight: 300;
 }
 
-div.sign-up-container, div.login-container {
-  margin: 25px;
+
+.panel-login>.panel-heading .tabs{
+  padding: 0;
+}
+.panel-login h2{
+  font-size: 20px;
+  font-weight: 300;
+  margin: 30px;
+}
+.panel-login>.panel-heading {
+  color: #848c9d;
+  background-color: #e8e9ec;
+  border-color: #fff;
+  text-align:center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom: 0px;
+  padding: 0px 15px;
+}
+.panel-login .form-group {
+  padding: 0 30px;
+}
+.panel-login>.panel-heading .login {
+  padding: 20px 30px;
+  border-bottom-leftt-radius: 5px;
+}
+.panel-login>.panel-heading .register {
+  padding: 20px 30px;
+  background: #6E75A8;
+  border-bottom-right-radius: 5px;
+}
+.panel-login>.panel-heading a{
+  text-decoration: none;
+  color: #666;
+  font-weight: 300;
+  font-size: 16px;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a#register-form-link {
+  color: #fff;
+  width: 100%;
+  text-align: right;
+}
+.panel-login>.panel-heading a#login-form-link {
+  width: 100%;
+  text-align: left;
+}
+
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+  height: 45px;
+  border: 0;
+  font-size: 16px;
+  -webkit-transition: all 0.1s linear;
+  -moz-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  border-bottom: 1px solid #e7e7e7;
+  border-radius: 0px;
+  padding: 6px 0px;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+  outline:none;
+  border-color: #ccc;
+}
+.btn-login {
+  background-color: #E8E9EC;
+  outline: none;
+  color: black;
+  font-size: 14px;
+  height: auto;
+  font-weight: normal;
+  padding: 14px 0;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0px;
+}
+.btn-login:hover,
+.btn-login:focus {
+  color: #fff;
+  background-color: #6E75A8;
+}
+
+.btn-register {
+  background-color: #E8E9EC;
+  outline: none;
+  color: black;
+  font-size: 14px;
+  height: auto;
+  font-weight: normal;
+  padding: 14px 0;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0px;
+}
+.btn-register:hover,
+.btn-register:focus {
+  color: #fff;
+  background-color: #6E75A8;
 }

@@ -26,16 +26,13 @@ end
 
 get "/" do
   #check if active session, otherwise
-  redirect to("/signup")
+  redirect to("/entrypage")
 end
 
-get "/signup" do
+get "/entrypage" do
   erb :loginpage
 end
 
-get "/login" do
-  erb :loginpage
-end
 
 post "/signup" do
   begin
