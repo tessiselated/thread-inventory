@@ -60,14 +60,11 @@ post "/login" do
 end
 
 get "/inventory" do
-  @inventory = Inventory.where(user_id: session[:user_id])
+  @inventory = Inventory.where(user_id: session[:user_id]).order(:spools_id)
   erb :inventory
 end
 
 post "/inventory" do
-  # user = current_user
-  # spool = Spool.find(params[:spools_id])
-  # user.add_spool(spool, params[:amount])
   current_user.add_spool(Spool.find(params[:spools_id]), params[:amount])
   redirect to("/inventory")
 end
