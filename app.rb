@@ -65,11 +65,10 @@ get "/inventory" do
 end
 
 post "/inventory" do
-  @thread = Inventory.new(@params)
-  @thread.required = false
-  @thread.in_use = false
-  @thread.user_id = session[:user_id]
-  @thread.save
+  # user = current_user
+  # spool = Spool.find(params[:spools_id])
+  # user.add_spool(spool, params[:amount])
+  current_user.add_spool(Spool.find(params[:spools_id]), params[:amount])
   redirect to("/inventory")
 end
 
