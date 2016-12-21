@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
 
   def add_to_shopping(spool, amount = 1)
     if ShoppingList.where(:user_id => self.id).exists?(:spools_id => spool.id)
-      list = Inventory.find_by(:user_id => self.id, :spools_id => spool.id)
-      list.amount += amount
+      list = ShoppingList.find_by(:user_id => self.id, :spools_id => spool.id)
+      list.amount += amount.to_i
       list.save
     else
       list = ShoppingList.new(user_id: self.id, spools_id: spool.id, amount: amount)
