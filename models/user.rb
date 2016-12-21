@@ -10,8 +10,14 @@ class User < ActiveRecord::Base
   has_many :project
 
   def add_spool(spool, amount = 1)
-    inventory = Inventory.new(user_id: self.id, spools_id: spool.id, amount: amount)
-    inventory.save
+    if Inventory.where(:user_id => self.id).exists?(:spools_id => spool.id)
+      inventory = Inventory.find_by(:user_id => self.id, :spools_id => spool.id)
+      inventory.amount += BigDecimal(amount)
+      inventory.save
+    else
+      inventory = Inventory.new(user_id: self.id, spools_id: spool.id, amount: amount)
+      inventory.save
+    end
     self.save
   end
 
