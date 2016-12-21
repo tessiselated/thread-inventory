@@ -94,3 +94,7 @@ delete "/session" do
   session[:user_id] = nil
   redirect to "/"
 end
+
+not_found do
+  erb :notfound
+end
