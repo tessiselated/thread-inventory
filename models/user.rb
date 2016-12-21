@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  has_many :inventory
-  has_many :shopping_list
-  has_many :project
+  has_many :inventories
+  has_many :shopping_lists
+  has_many :projects
 
   def add_spool(spool, amount = 1)
     if Inventory.where(:user_id => self.id).exists?(:spools_id => spool.id)
