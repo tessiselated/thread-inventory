@@ -8,6 +8,7 @@ require "pg"
 require_relative "./models/user"
 require_relative "./models/inventory"
 require_relative "./models/spool"
+require_relative "./models/shopping_list"
 
 
 set :database_file, "./config/database.yml"
@@ -77,6 +78,17 @@ post "/inventory" do
   current_user.add_spool(Spool.find(params[:spools_id]), params[:amount])
   redirect to("/inventory")
 end
+
+get "/shoppinglist" do
+  @list = ShoppingList.where(user_id: session[:user_id]).order(:spools_id)
+  erb :shoppinglist
+end
+
+post "/shoppinglist" do
+  current_user.add_to_shopping(Spool.find(params[:spools_id]), params[:amount])
+  redirect to ("/shoppinglist")
+end
+
 
 delete "/session" do
   session[:user_id] = nil

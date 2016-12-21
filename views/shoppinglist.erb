@@ -1,0 +1,34 @@
+<table class = "shoppinglist-table">
+  <tr>
+    <th>
+      DMC
+    </th>
+    <th>
+      Amount
+    </th>
+  </tr>
+  <% @list.each do |entry| %>
+  <tr>
+    <th>
+      <%= Spool.find(entry.spools_id)[:dmc] %>
+    </th>
+    <th>
+      <%= entry.amount %>
+    </th>
+  </tr>
+  <% end %>
+
+</table>
+
+<h3>Add a thread</h3>
+<form action="/shoppinglist" method="post">
+  <select name='spools_id' class="single-select">
+  <option value="DMC_value" disabled selected>DMC</option>
+    <% Spool.all.each do |spool| %>
+    <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
+    <% end %>
+
+  </select>
+  <input name = "amount" placeholder = "Enter amount"  />
+  <button type = "submit">Add thread</button>
+</form>
