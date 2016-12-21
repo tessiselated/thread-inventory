@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :inventory
-  has_one :shopping_list
+  has_many :shopping_list
+  has_many :project
 
-  def add_spool(spool)
-    inventory = Inventory.new(user_id: self.id, spools_id: spool.id)
+  def add_spool(spool, amount = 1)
+    inventory = Inventory.new(user_id: self.id, spools_id: spool.id, amount: amount)
     inventory.save
     self.save
   end
