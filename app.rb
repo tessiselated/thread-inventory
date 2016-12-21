@@ -25,22 +25,32 @@ end
 
 
 get "/" do
-  #check if active session, otherwise
-  redirect to("/entrypage")
+  if logged_in?
+    redirect to("/inventory")
+  else redirect to("/entrypage")
+  end
 end
 
 get "/entrypage" do
+  if logged_in?
+    redirect to("/inventory")
+  end
   erb :loginpage
 end
 
 
 post "/signup" do
   begin
-    @user = User.new(@params)
+    @user = User.new(username: params[:username], password: params[:password])
     if @user.save
       session[:user_id] = @user.id
       redirect to("/inventory")
+    elsif User.exists?(:username => params[:username])
+      redirect to("/")
+    elsif params[:username] == "" || params[:password] == ""
+      redirect to("/")
     end
+
   rescue
     "Generic error message"
 
@@ -53,6 +63,8 @@ post "/login" do
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect to("/inventory")
+  else
+    redirect to("/")
   end
 end
 
