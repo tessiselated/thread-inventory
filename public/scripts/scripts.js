@@ -1,7 +1,7 @@
 
 
 $(document).ready(function() {
-  $(".single-select").select2();
+  $(".fancy-select").select2();
 });
 
 

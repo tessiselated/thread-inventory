@@ -8,9 +8,9 @@ class Implementingprojects < ActiveRecord::Migration[5.0]
 
 
 
-    create_table :spoolsprojects do |t|
+    create_table :projects_spools do |t|
       t.belongs_to :project
-      t.references :spools
+      t.references :spool
     end
 
   end

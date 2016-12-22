@@ -9,6 +9,7 @@ require_relative "./models/user"
 require_relative "./models/inventory"
 require_relative "./models/spool"
 require_relative "./models/shopping_list"
+require_relative "./models/project"
 
 
 set :database_file, "./config/database.yml"
@@ -92,7 +93,16 @@ end
 
 delete "/session" do
   session[:user_id] = nil
-  redirect to "/"
+  redirect to("/")
+end
+
+get "/projects" do
+  erb :project
+end
+
+post "/newproject" do
+  current_user.new_project(params[:spools_ids], params[:projectname])
+  redirect to("/projects")
 end
 
 not_found do

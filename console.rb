@@ -9,6 +9,7 @@ require_relative "./models/user"
 require_relative "./models/inventory"
 require_relative "./models/spool"
 require_relative "./models/shopping_list"
+require_relative "./models/project"
 
 
 set :database_file, "./config/database.yml"

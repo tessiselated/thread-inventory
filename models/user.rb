@@ -33,4 +33,11 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  def new_project(spoolids, name)
+    project = Project.new(user_id: self.id, name: name)
+    project.spool_ids = spoolids
+    project.save
+    self.save
+  end
+
 end

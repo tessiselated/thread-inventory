@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 20161221112056) do
     t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
   end
 
+  create_table "projects_spools", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "spool_id"
+    t.index ["project_id"], name: "index_projects_spools_on_project_id", using: :btree
+    t.index ["spool_id"], name: "index_projects_spools_on_spool_id", using: :btree
+  end
+
   create_table "shopping_lists", force: :cascade do |t|
     t.integer "user_id"
     t.integer "spools_id"
@@ -41,13 +48,6 @@ ActiveRecord::Schema.define(version: 20161221112056) do
     t.string "dmc"
     t.string "name"
     t.string "rgb"
-  end
-
-  create_table "spoolsprojects", force: :cascade do |t|
-    t.integer "project_id"
-    t.integer "spools_id"
-    t.index ["project_id"], name: "index_spoolsprojects_on_project_id", using: :btree
-    t.index ["spools_id"], name: "index_spoolsprojects_on_spools_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

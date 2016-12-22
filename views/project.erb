@@ -1,0 +1,10 @@
+<h3>New Project</h3>
+<form action="/newproject" method="post">
+  <input name = "projectname" placeholder = "Project name"  />
+  <select name="spools_ids[]" class="fancy-select wide-select" multiple="multiple">
+    <% Spool.all.each do |spool| %>
+      <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
+    <% end %>
+  </select>
+  <button type="submit" class="btn">New project!</button>
+</form>

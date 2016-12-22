@@ -22,7 +22,7 @@
 
 <h3>Add a thread</h3>
 <form action="/shoppinglist" method="post">
-  <select name='spools_id' class="single-select">
+  <select name='spools_id' class="fancy-select">
   <option value="DMC_value" disabled selected>DMC</option>
     <% Spool.all.each do |spool| %>
     <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
@@ -30,5 +30,5 @@
 
   </select>
   <input name = "amount" placeholder = "Enter amount"  />
-  <button type = "submit">Add thread</button>
+  <button type="submit" class="btn">Add thread</button>
 </form>
