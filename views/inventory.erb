@@ -1,5 +1,9 @@
 <table class = "inventory-table">
+  <thead>
   <tr>
+    <th>
+      Key
+    </th>
     <th>
       DMC
     </th>
@@ -7,16 +11,21 @@
       Amount
     </th>
   </tr>
+  </thead>
+  <tbody>
   <% @inventory.each do |entry| %>
   <tr>
-    <th>
+    <td style="background-color: rgb(<%= Spool.find(entry.spools_id)[:rgb] %>)">
+    </td>
+    <td>
       <%= Spool.find(entry.spools_id)[:dmc] %>
-    </th>
-    <th>
+    </td>
+    <td>
       <%= entry.amount %>
-    </th>
+    </td>
   </tr>
   <% end %>
+  </tbody>
 
 </table>
 
