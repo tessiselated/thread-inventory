@@ -21,7 +21,8 @@
       <%= Spool.find(entry.spools_id)[:dmc] %>
     </td>
     <td>
-      <%= entry.amount %>
+      <%= entry.separate_length[0] %> x 8m
+      and <%= entry.separate_length[1] %>m
     </td>
   </tr>
   <% end %>
@@ -29,15 +30,30 @@
 
 </table>
 
-<h3>Add a thread</h3>
+<h3>Adjust inventory</h3>
+
+<% if @params[:error] %>
+  <p>Amount in inventory has to be positive</p>
+<% end %>
+
 <form action="/inventory" method="post">
-  <select name='spools_id' class="single-select">
-  <option value="DMC_value" disabled selected>DMC</option>
+  <select name="operator" class = "fancy-select operator">
+    <option value="1">
+      Add
+    </option>
+    <option value = "-1">
+      Subtract
+    </option>
+  </select>
+  <select name='spools_id' class="single-select fancy-select">
+  <option disabled = "disabled" selected>DMC</option>
     <% Spool.all.each do |spool| %>
     <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
     <% end %>
 
   </select>
-  <input name = "amount" placeholder = "Enter amount"  />
-  <button class = "btn" type = "submit">Add thread</button>
+  <input name = "whole" placeholder = "# of skeins"  />
+  and
+  <input name = "point" placeholder = "metres" />
+  <button class = "btn" type = "submit">Adjust</button>
 </form>

@@ -76,8 +76,15 @@ get "/inventory" do
 end
 
 post "/inventory" do
-  current_user.add_spool(Spool.find(params[:spools_id]), params[:amount])
-  redirect to("/inventory")
+  if params[:spools_id] == nil
+    redirect to("/inventory")
+  end
+  amount = (params[:whole].to_f + (params[:point].to_f / 8)) * params[:operator].to_f
+  if current_user.add_spool(Spool.find(params[:spools_id]), amount)
+    redirect to("/inventory")
+  else
+    redirect to("/inventory?error=true")
+  end
 end
 
 get "/shoppinglist" do

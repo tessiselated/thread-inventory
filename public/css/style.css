@@ -162,3 +162,7 @@ div.error-container {
 select.wide-select {
   width: 60%;
 }
+
+select.operator {
+  width: 10%;
+}
