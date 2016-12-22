@@ -71,6 +71,7 @@ post "/login" do
 end
 
 get "/inventory" do
+  Inventory.destroy(current_user.inventories.where("amount <= ?", 0).ids)
   @inventory = Inventory.where(user_id: session[:user_id]).order(:spools_id)
   erb :inventory
 end

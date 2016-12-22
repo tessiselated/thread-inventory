@@ -5,25 +5,16 @@ class Inventory < ActiveRecord::Base
 
   def separate_length
     whole = self.amount.floor
-    point = ((self.amount - whole) * 8).round(1).to_i
+    point = ((self.amount - whole) * 8).round(1)
     return [whole, point]
   end
 
-  # def add_spool(spool)
-  #   spools << spool
-  #   self.save
-  # end
-  #
-  #  def length(spool_type)
-  #    found_spools = spools.find(dmc: spool_type)
-  #    lengths = found_spools.map(&:remaining)
-  #    lengths.sum
-  #  end
+  def clean_inventory
+  
+    binding.pry
+  end
+
+
+
 
 end
-
-
-# current_user.inventory.add_spool(Spool.find(dmc: Black))
-# current_user.inventory.add_spool(Spool.new(color: Red))
-# current_user.inventory.loonth("White")
-# => 24
