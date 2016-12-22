@@ -2,6 +2,13 @@ class Inventory < ActiveRecord::Base
   belongs_to :user
   has_many :spools
 
+
+  def separate_length
+    whole = self.amount.floor
+    point = ((self.amount - whole) * 8).round(1).to_i
+    return [whole, point]
+  end
+
   # def add_spool(spool)
   #   spools << spool
   #   self.save
