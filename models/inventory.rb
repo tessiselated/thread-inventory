@@ -9,10 +9,16 @@ class Inventory < ActiveRecord::Base
     return [whole, point]
   end
 
-  def clean_inventory
-  
-    binding.pry
+  def check_in_use(spoolid, projects)
+    projects.each do |e|
+      if e.spool_ids.include? spoolid
+        return true
+      end
+    end
+    return false
   end
+
+
 
 
 

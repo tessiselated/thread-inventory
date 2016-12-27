@@ -10,6 +10,9 @@
     <th>
       Amount
     </th>
+    <th>
+      Project?
+    </th>
   </tr>
   </thead>
   <tbody>
@@ -23,6 +26,11 @@
     <td>
       <%= entry.separate_length[0] %> skeins
       and <%= entry.separate_length[1] %>m
+    </td>
+    <td>
+      <% if entry.check_in_use(entry.spools_id, current_user.projects) %>
+      <span class="glyphicon glyphicon-exclamation-sign exclamation-alert" aria-hidden="true">
+      <% end %>
     </td>
   </tr>
   <% end %>

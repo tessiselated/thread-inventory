@@ -166,3 +166,7 @@ select.wide-select {
 select.operator {
   width: 10%;
 }
+
+span.exclamation-alert {
+  color: #A30B37;
+}
