@@ -27,6 +27,13 @@
          </button>
       </form>
     </td>
+    <td>
+      <form action="/deleteitem/<%= entry.spools_id %>" method="post">
+         <button type="submit" class="submit-with-icon">
+           <span class="glyphicon glyphicon-remove-sign"></span>
+         </button>
+      </form>
+    </td>
   </tr>
   <% end %>
 

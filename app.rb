@@ -129,6 +129,11 @@ post "/buythread/:id" do
 
 end
 
+post "/deleteitem/:id" do
+  ShoppingList.destroy(current_user.shopping_lists.where(spools_id: params["id"]))
+  redirect to("/shoppinglist")
+end
+
 
 not_found do
   erb :notfound
