@@ -1,6 +1,9 @@
 <table class = "shoppinglist-table">
   <tr>
     <th>
+      Key
+    </th>
+    <th>
       DMC
     </th>
     <th>
@@ -9,12 +12,21 @@
   </tr>
   <% @list.each do |entry| %>
   <tr>
-    <th>
+    <td style="background-color: rgb(<%= Spool.find(entry.spools_id)[:rgb] %>)">
+    </td>
+    <td>
       <%= Spool.find(entry.spools_id)[:dmc] %>
-    </th>
-    <th>
-      <%= entry.amount %>
-    </th>
+    </td>
+    <td>
+      <%= entry.amount %> skeins
+    </td>
+    <td>
+      <form action="/buythread/<%= entry.spools_id %>" method="post">
+         <button type="submit" class="submit-with-icon">
+           <span class="glyphicon glyphicon-shopping-cart"></span>
+         </button>
+      </form>
+    </td>
   </tr>
   <% end %>
 

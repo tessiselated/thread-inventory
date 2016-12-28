@@ -88,6 +88,12 @@ post "/inventory" do
   end
 end
 
+
+post "/deletethread/:id" do
+  Inventory.destroy(current_user.inventories.where(spools_id: params["id"]))
+  redirect to("/inventory")
+end
+
 get "/shoppinglist" do
   @list = ShoppingList.where(user_id: session[:user_id]).order(:spools_id)
   erb :shoppinglist
@@ -113,11 +119,13 @@ post "/newproject" do
   redirect to("/projects")
 end
 
-post "/deletethread/:id" do
-  Inventory.destroy(current_user.inventories.where(spools_id: params["id"]))
+post "/buythread/:id" do
+  @item = ShoppingList.find_by(user_id: session[:user_id], spools_id: params[:id])
+  @item.buy_spool
+  redirect to("/shoppinglist")
 
-  redirect to("/inventory")
 end
+
 
 not_found do
   erb :notfound
