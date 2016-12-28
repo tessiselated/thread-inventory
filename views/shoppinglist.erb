@@ -35,7 +35,7 @@
 <h3>Add a thread</h3>
 <form action="/shoppinglist" method="post">
   <select name='spools_id' class="fancy-select">
-  <option value="DMC_value" disabled selected>DMC</option>
+  <option disabled = "disabled" selected>DMC</option>
     <% Spool.all.each do |spool| %>
     <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
     <% end %>

@@ -100,6 +100,9 @@ get "/shoppinglist" do
 end
 
 post "/shoppinglist" do
+  if params[:spools_id] == nil
+    redirect to("/shoppinglist")
+  end
   current_user.add_to_shopping(Spool.find(params[:spools_id]), params[:amount])
   redirect to ("/shoppinglist")
 end
