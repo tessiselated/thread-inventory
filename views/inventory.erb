@@ -11,7 +11,10 @@
       Amount
     </th>
     <th>
-      Project?
+
+    </th>
+    <th>
+
     </th>
   </tr>
   </thead>
@@ -32,6 +35,15 @@
       <span class="glyphicon glyphicon-exclamation-sign exclamation-alert" aria-hidden="true">
       <% end %>
     </td>
+    <td>
+      <form action="/deletethread/<%= entry.spools_id %>" method="post">
+         <button type="submit" class="submit-with-icon">
+           <span class="glyphicon glyphicon-remove-sign"></span>
+         </button>
+      </form>
+    </td>
+
+
   </tr>
   <% end %>
   </tbody>

@@ -167,6 +167,14 @@ select.operator {
   width: 10%;
 }
 
-span.exclamation-alert {
+.exclamation-alert, .glyphicon-remove-sign {
   color: #A30B37;
+}
+
+
+.submit-with-icon {
+  background: transparent;
+    border: 0px;
+    padding: 0;
+    outline: 0;
 }

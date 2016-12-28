@@ -113,6 +113,12 @@ post "/newproject" do
   redirect to("/projects")
 end
 
+post "/deletethread/:id" do
+  Inventory.destroy(current_user.inventories.where(spools_id: params["id"]))
+
+  redirect to("/inventory")
+end
+
 not_found do
   erb :notfound
 end
