@@ -134,6 +134,13 @@ post "/deleteitem/:id" do
   redirect to("/shoppinglist")
 end
 
+post "/buyall" do
+  ShoppingList.where(user_id: session[:user_id]).each do |item|
+    item.buy_spool
+  end
+  redirect to("/inventory")
+end
+
 
 not_found do
   erb :notfound
