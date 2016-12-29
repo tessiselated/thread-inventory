@@ -1,0 +1,26 @@
+<h3><%= @project.name %></h3>
+<form action="/pushtosl" method="post">
+  <h4>Not in inventory</h4>
+  <ul>
+    <% @project.spool_ids.each do |thread| %>
+    <% @spool = Spool.find(thread) %>
+      <% if !Inventory.find_by(user_id: session[:user_id], spools_id: @spool.id) %>
+      <li>
+        <%= @spool.dmc %> - <%= @spool.name %> <input name = "<%= @spool.id %>" placeholder = "Amount"/>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <h4>In inventory already</h4>
+  <ul>
+    <% @project.spool_ids.each do |thread| %>
+    <% @spool = Spool.find(thread) %>
+      <% if @inventory = Inventory.find_by(user_id: session[:user_id], spools_id: @spool.id) %>
+      <li>
+        <%= @spool.dmc %> - <%= @spool.name %> - <%= @inventory.separate_length[0] %> skeins and <%= @inventory.separate_length[1] %>m - <input name = "<%= @spool.id %>" placeholder = "Amount"/>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <button type="submit">Add to Shopping List</button>
+</form>

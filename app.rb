@@ -119,8 +119,15 @@ end
 
 post "/newproject" do
   current_user.new_project(params[:spools_ids], params[:projectname])
-  redirect to("/projects")
+  redirect to("/project/#{params[:projectname]}/confirm")
 end
+
+get "/project/*/confirm" do
+  @project = Project.find_by(user_id: session[:user_id], name: params[:splat])
+  erb :projectconfirm
+end
+
+
 
 post "/buythread/:id" do
   @item = ShoppingList.find_by(user_id: session[:user_id], spools_id: params[:id])
@@ -141,6 +148,17 @@ post "/buyall" do
   redirect to("/inventory")
 end
 
+post "/pushtosl" do
+  @keys = params.keys
+  c = 0
+  params.each do |i|
+    @spool = Spool.find(@keys[c])
+    @amount = params[@keys[c]]
+    current_user.add_to_shopping(@spool, @amount)
+    c += 1
+  end
+  redirect to("/shoppinglist")
+end
 
 not_found do
   erb :notfound
