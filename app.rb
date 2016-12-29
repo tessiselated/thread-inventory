@@ -114,16 +114,18 @@ delete "/session" do
 end
 
 get "/projects" do
+  @projects = Project.where(user_id: session[:user_id])
   erb :project
 end
 
 post "/newproject" do
   current_user.new_project(params[:spools_ids], params[:projectname])
-  redirect to("/project/#{params[:projectname]}/confirm")
+  @new = Project.find_by(user_id: session[:user_id], name: params[:projectname])
+  redirect to("/project/#{@new.id}/confirm")
 end
 
 get "/project/*/confirm" do
-  @project = Project.find_by(user_id: session[:user_id], name: params[:splat])
+  @project = Project.find_by(user_id: session[:user_id], id: params[:splat])
   erb :projectconfirm
 end
 
@@ -159,6 +161,8 @@ post "/pushtosl" do
   end
   redirect to("/shoppinglist")
 end
+
+get
 
 not_found do
   erb :notfound

@@ -1,3 +1,20 @@
+<h3>Projects</h3>
+
+<% @projects.each do |entry| %>
+<div class="project-container">
+  <h4><%= entry.name %></h4>
+  <ul>
+    <% entry.spool_ids.each do |thread| %>
+    <% @spool = Spool.find(thread) %>
+      <li>
+        <%= @spool.dmc %> - <%= @spool.name %>
+      </li>
+    <% end %>
+  </ul>
+  <a href="/close/<%= "#{entry.name}" %>">Close project</a>
+</div>
+<% end %>
+
 <h3>New Project</h3>
 <form action="/newproject" method="post">
   <input name = "projectname" placeholder = "Project name"  />
