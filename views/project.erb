@@ -1,27 +1,34 @@
-<h3>Projects</h3>
+<div class="align-stuff">
 
-<% @projects.each do |entry| %>
-<div class="project-container">
-  <h4><%= entry.name %></h4>
-  <ul>
-    <% entry.spool_ids.each do |thread| %>
-    <% @spool = Spool.find(thread) %>
-      <li>
-        <%= @spool.dmc %> - <%= @spool.name %>
-      </li>
-    <% end %>
-  </ul>
-  <a href="/close/<%= "#{entry.id}" %>">Close project</a>
+  <h3>Projects</h3>
+
+  <% @projects.each do |entry| %>
+    <div class="project-container">
+      <h4><%= entry.name %></h4>
+      <ul>
+        <% entry.spool_ids.each do |thread| %>
+        <% @spool = Spool.find(thread) %>
+          <li>
+            <%= @spool.dmc %> - <%= @spool.name %>
+          </li>
+        <% end %>
+      </ul>
+      <a href="/close/<%= "#{entry.id}" %>">Close project</a>
+    </div>
+  <% end %>
+
 </div>
-<% end %>
 
-<h3>New Project</h3>
-<form action="/newproject" method="post">
-  <input name = "projectname" placeholder = "Project name"  />
-  <select name="spools_ids[]" class="fancy-select wide-select" multiple="multiple">
-    <% Spool.all.each do |spool| %>
-      <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
-    <% end %>
-  </select>
-  <button type="submit" class="btn">New project!</button>
-</form>
+<div class="form-container">
+  <h3>New Project</h3>
+  <form action="/newproject" method="post">
+    <input name = "projectname" placeholder = "Project name"  />
+      <select name="spools_ids[]" class="fancy-select wide-select" multiple="multiple">
+        <% Spool.all.each do |spool| %>
+          <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
+        <% end %>
+      </select>
+    <button type="submit" class="btn">New project!</button>
+  </form>
+
+</div>

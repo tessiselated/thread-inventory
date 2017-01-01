@@ -1,3 +1,7 @@
+<div class="align-stuff">
+  <h3>Inventory</h3>
+</div>
+
 <table class = "inventory-table">
   <thead>
   <tr>
@@ -6,6 +10,9 @@
     </th>
     <th>
       DMC
+    </th>
+    <th>
+      Name
     </th>
     <th>
       Amount
@@ -25,6 +32,9 @@
     </td>
     <td>
       <%= Spool.find(entry.spools_id)[:dmc] %>
+    </td>
+    <td>
+      <%= Spool.find(entry.spools_id)[:name] %>
     </td>
     <td>
       <%= entry.separate_length[0] %> skeins
@@ -50,30 +60,34 @@
 
 </table>
 
-<h3>Adjust inventory</h3>
+<div class="form-container">
 
-<% if @params[:error] %>
-  <p>Amount in inventory has to be positive</p>
-<% end %>
+  <h3>Adjust inventory</h3>
 
-<form action="/inventory" method="post">
-  <select name="operator" class = "fancy-select operator">
-    <option value="1">
-      Add
-    </option>
-    <option value = "-1">
-      Subtract
-    </option>
-  </select>
-  <select name='spools_id' class="single-select fancy-select">
-  <option disabled = "disabled" selected>DMC</option>
-    <% Spool.all.each do |spool| %>
-    <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
-    <% end %>
+  <% if @params[:error] %>
+    <p>Amount in inventory has to be positive</p>
+  <% end %>
 
-  </select>
-  <input name = "whole" placeholder = "# of skeins"  />
-  and
-  <input name = "point" placeholder = "metres" />
-  <button class = "btn" type = "submit">Adjust</button>
-</form>
+  <form action="/inventory" method="post">
+    <select name="operator" class = "fancy-select operator">
+      <option value="1">
+        Add
+      </option>
+      <option value = "-1">
+        Subtract
+      </option>
+    </select>
+    <select name='spools_id' class="single-select fancy-select">
+      <option disabled = "disabled" selected>DMC</option>
+        <% Spool.all.each do |spool| %>
+          <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
+        <% end %>
+
+    </select>
+    <input name = "whole" placeholder = "# of skeins"  />
+    and
+    <input name = "point" placeholder = "metres" />
+    <button class = "btn" type = "submit">Adjust</button>
+  </form>
+
+</div>

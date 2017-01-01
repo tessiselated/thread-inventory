@@ -1,3 +1,7 @@
+<div class="align-stuff">
+  <h3>Shopping List</h3>
+</div>
+
 <table class = "shoppinglist-table">
   <tr>
     <th>
@@ -5,6 +9,9 @@
     </th>
     <th>
       DMC
+    </th>
+    <th>
+      Name
     </th>
     <th>
       Amount
@@ -16,6 +23,9 @@
     </td>
     <td>
       <%= Spool.find(entry.spools_id)[:dmc] %>
+    </td>
+    <td>
+      <%= Spool.find(entry.spools_id)[:name] %>
     </td>
     <td>
       <%= entry.amount %> skeins
@@ -39,19 +49,27 @@
 
 </table>
 
-<form action="/buyall" method="post">
-  <button type="submit">Buy all</button>
-</form>
+<div class="form-container">
 
-<h3>Add a thread</h3>
-<form action="/shoppinglist" method="post">
-  <select name='spools_id' class="fancy-select">
-  <option disabled = "disabled" selected>DMC</option>
-    <% Spool.all.each do |spool| %>
-    <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
-    <% end %>
+  <form action="/buyall" method="post">
+    <button type="submit">Buy all</button>
+  </form>
 
-  </select>
-  <input name = "amount" placeholder = "Enter amount"  />
-  <button type="submit" class="btn">Add thread</button>
-</form>
+</div>
+
+<div class="form-container">
+
+  <h3>Add a thread</h3>
+  <form action="/shoppinglist" method="post">
+    <select name='spools_id' class="fancy-select">
+    <option disabled = "disabled" selected>DMC</option>
+      <% Spool.all.each do |spool| %>
+        <option value="<%= spool[:id] %>"><%= "#{spool[:dmc]} - #{spool[:name]}" %></option>
+      <% end %>
+
+    </select>
+    <input name = "amount" placeholder = "Enter amount"  />
+    <button type="submit" class="btn">Add thread</button>
+  </form>
+
+</div>
