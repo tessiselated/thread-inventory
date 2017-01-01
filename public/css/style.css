@@ -178,3 +178,7 @@ select.operator {
     padding: 0;
     outline: 0;
 }
+
+td, th {
+  padding: 10px;
+}

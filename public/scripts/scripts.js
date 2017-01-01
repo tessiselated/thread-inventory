@@ -22,3 +22,7 @@ $(function() {
 	});
 
 });
+
+$("button.submit-with-icon").tooltip();
+
+$("span.exclamation-alert").tooltip();

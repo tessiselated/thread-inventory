@@ -32,12 +32,12 @@
     </td>
     <td>
       <% if entry.check_in_use(entry.spools_id, current_user.projects) %>
-      <span class="glyphicon glyphicon-exclamation-sign exclamation-alert" aria-hidden="true">
+      <span class="glyphicon glyphicon-exclamation-sign exclamation-alert" aria-hidden="true" title="In use by a project">
       <% end %>
     </td>
     <td>
       <form action="/deletethread/<%= entry.spools_id %>" method="post">
-         <button type="submit" class="submit-with-icon">
+         <button type="submit" class="submit-with-icon delete-thread" title="Delete from inventory">
            <span class="glyphicon glyphicon-remove-sign"></span>
          </button>
       </form>
