@@ -18,7 +18,12 @@ class Inventory < ActiveRecord::Base
     return false
   end
 
-
+  def update_amount(amount)
+    if amount != nil
+      self.amount = BigDecimal(amount, 4)
+      self.save
+    end
+  end
 
 
 

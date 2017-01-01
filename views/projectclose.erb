@@ -1,0 +1,18 @@
+<h3><%= @project.name %></h3>
+<form action="/closeproject" method="post">
+  <input type="hidden" name="projectid" value="<%= @project.id %>" />
+  <ul>
+  <% @project.spool_ids.each do |thread| %>
+    <% @spool = Spool.find(thread) %>
+      <% if @inventory = Inventory.find_by(user_id: session[:user_id], spools_id: @spool.id) %>
+        <li>
+          <%= @spool.dmc %> - <%= @spool.name %> -
+          <input name="<%= @inventory.id %> whole" value="<%= @inventory.separate_length[0] %>" /> skeins
+          and
+          <input name="<%= @inventory.id %> point" value="<%= @inventory.separate_length[1] %>" />m
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <button type="submit">Update Inventory and Close Project</button>
+</form>

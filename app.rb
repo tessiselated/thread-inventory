@@ -162,7 +162,34 @@ post "/pushtosl" do
   redirect to("/shoppinglist")
 end
 
-get
+get "/close/:id" do
+  begin
+    @project = Project.find_by(user_id: session[:user_id], id: params[:id])
+    erb :projectclose
+  # rescue
+  #   binding.pry
+  #   pass
+  end
+end
+
+post "/closeproject" do
+  @project = Project.find_by(user_id: session[:user_id], id: params[:projectid])
+  @keyarr = Array.new
+  params.keys.each do |i|
+    @keyarr.push(i.split)
+  end
+  c = 0
+  @keyarr.each do |k|
+    if k.length == 2 && c % 2 != 0
+      @inventory = Inventory.find_by(user_id: session[:user_id], id: k[0])
+      @inventory.update_amount(params.values[c].to_f + (params.values[(c + 1)].to_f / 8))
+    end
+    c += 1
+  end
+  Project.destroy(@project)
+  current_user.save
+  redirect to("/projects")
+end
 
 not_found do
   erb :notfound
