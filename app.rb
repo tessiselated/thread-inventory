@@ -1,6 +1,7 @@
 require "sinatra"
 require "sinatra/reloader"
 require "pry"
+set :database_file, "./config/database.yml"
 require "active_record"
 require "sinatra/activerecord"
 require "pg"
@@ -12,7 +13,6 @@ require_relative "./models/shopping_list"
 require_relative "./models/project"
 
 
-set :database_file, "./config/database.yml"
 set :sessions, true
 
 helpers do
