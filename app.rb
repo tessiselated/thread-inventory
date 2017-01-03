@@ -1,7 +1,7 @@
 require "sinatra"
 require "sinatra/reloader"
 require "pry"
-set :database_file, "./config/database.yml"
+#set :database_file, "./config/database.yml"
 require "active_record"
 require "sinatra/activerecord"
 require "pg"
