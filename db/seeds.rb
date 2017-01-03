@@ -1,5 +1,5 @@
 
-require "YAML"
+require "yaml"
 require_relative "../models/spool"
 
 
