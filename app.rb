@@ -1,7 +1,6 @@
 require "sinatra"
 require "sinatra/reloader"
 require "pry"
-#set :database_file, "./config/database.yml"
 require "active_record"
 require "sinatra/activerecord"
 require "pg"
@@ -12,7 +11,7 @@ require_relative "./models/spool"
 require_relative "./models/shopping_list"
 require_relative "./models/project"
 
-
+set :database_file, "./config/database.yml"
 set :sessions, true
 
 helpers do
@@ -95,6 +94,7 @@ post "/deletethread/:id" do
 end
 
 get "/shoppinglist" do
+  ShoppingList.destroy(current_user.shopping_lists.where("amount <= ?", 0).ids)
   @list = ShoppingList.where(user_id: session[:user_id]).order(:spools_id)
   erb :shoppinglist
 end

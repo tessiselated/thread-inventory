@@ -2,6 +2,8 @@ class ShoppingList < ActiveRecord::Base
   belongs_to :user
   has_many :spools
 
+  validates :amount, presence: true
+
   def buy_spool
     user.add_spool((Spool.find(self.spools_id)), self.amount)
     self.delete
