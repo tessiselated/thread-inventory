@@ -4,13 +4,13 @@ This project is a personal inventory management for embroidery threads, specific
 
 It has individual login, where a user can populate a personal their personal inventory and a personal shopping list. They are also able to open projects and indicate what threads will be used by a project. It will then prompt the user to add threads to the shopping list - and indicates which threads (and how much) are currently in the inventory.
 
-Threads can be marked as "bought" from the shopping list which will then add them to the inventory. The inventory view will also show which threads are currently in use by a project - indicating that the amount may be incorrect.
+Threads can be marked as "bought" from the shopping list which will then add them to the inventory. The inventory view will also show which threads are currently in use by a project - indicating that the amount may be out of date.
 
 Users can close a project, which will prompt the user to update the amount of each thread left in the inventory.
 
 ## Environments
 
-kasunbot was developed with
+thread inventory was developed with
 - OS X El Capitan v 10.11.6
 - ruby 2.3.1
 - sinatra 1.4.7
@@ -18,7 +18,7 @@ kasunbot was developed with
 
 ## Installation
 
-To use this bot, download this repo and run `bundle install`. You will need a local postgres client
+To use this application, download this repo and run `bundle install`. You will need a local postgres client
 
 Alternatively, it is [hosted on Heroku](https://fast-bayou-63859.herokuapp.com/entrypage)
 
